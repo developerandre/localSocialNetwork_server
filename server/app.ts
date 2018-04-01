@@ -3,11 +3,7 @@ import * as compression from "compression";
 import * as express from "express";
 import * as path from "path";
 
-import { feedRouter } from "./routes/feed";
-import { loginRouter } from "./routes/login";
-import { protectedRouter } from "./routes/protected";
 import { publicRouter } from "./routes/public";
-import { userRouter } from "./routes/user";
 
 const app: express.Application = express();
 
@@ -18,11 +14,7 @@ app.use(compression());
 app.use(urlencoded({ extended: true }));
 
 // api routes
-app.use("/api/secure", protectedRouter);
-app.use("/api/login", loginRouter);
 app.use("/api/public", publicRouter);
-app.use("/api/feed", feedRouter);
-app.use("/api/user", userRouter);
 
 if (app.get("env") === "production") {
 
